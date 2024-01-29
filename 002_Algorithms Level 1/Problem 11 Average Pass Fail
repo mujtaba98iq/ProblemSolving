@@ -1,0 +1,52 @@
+solving problem 11:
+#include <iostream>
+using namespace std;
+
+
+enum enResult {
+    pass = 1,
+    fail = 2,
+};
+void ReadMark(int &mark1, int &mark2, int &mark3) {
+
+    cout << "Enter Value of Mark 1 : \n";
+    cin >> mark1;
+    cout << "Enter Value of Mark 2 : \n";
+    cin >> mark2;
+    cout << "Enter Value of Mark 3 : \n";
+    cin >> mark3;
+
+}
+
+int sumOfMark(int mark1,int mark2,int mark3) {
+    return mark1 + mark2 + mark3;
+}
+
+float CalculateAvg(int mark1, int mark2, int mark3) {
+    return (float) sumOfMark(mark1, mark2, mark3) / 3;
+
+}
+
+enResult CheckMark(float Avarage) {
+
+    if (Avarage >= 50)
+        return enResult::pass;
+    else
+        return enResult::fail;
+
+}
+
+void PrintResult(float Avarage) {
+    cout << "The Avarage is : " << Avarage << "\n";
+    if (CheckMark(Avarage) == enResult::pass)
+        cout << "You are Secess"<<endl;
+    else
+        cout << "You are failer" << endl;
+}
+
+int main()
+{
+    int mark1,  mark2, mark3;
+    ReadMark(mark1, mark2, mark3);
+   PrintResult(CalculateAvg(mark1,mark2,mark3));
+}
