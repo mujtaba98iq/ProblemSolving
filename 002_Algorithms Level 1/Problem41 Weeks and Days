@@ -1,0 +1,39 @@
+solving problem 41:
+#include <iostream>
+using namespace std;
+
+float ReadPositiveNumber(string Message) {
+	float Number;
+	while (Number <=0)
+	{
+		cout << Message;
+		cin >> Number;
+	}
+	return Number;
+}
+float HoursToDays(float Hours)
+{
+	float Days = Hours / 24;
+	return Days;
+}
+float HoursToWeeks(float Hours)
+{
+	float Weeks = Hours / 168;
+	return Weeks;
+}
+float DaysToWeeks(float Days) {
+	float Weeks = Days / 7;
+	return Weeks;
+}
+
+int main()
+{
+	float NumberOfHours = ReadPositiveNumber("Enter the number of the Hourse! : \n");\
+	float NumberOfDays = HoursToDays(NumberOfHours);
+	float NumberOfWeeks = DaysToWeeks(NumberOfDays);
+	cout << endl;
+	cout << "THe number of Days is = " << NumberOfHours<< endl;
+	cout << "THe number of Days is = " << NumberOfDays<< endl;
+	cout << "THe number of Weeks is = " << NumberOfWeeks << endl;
+	return 0;
+}
