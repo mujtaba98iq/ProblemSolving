@@ -1,47 +1,43 @@
-solving problem 33:
+--solvong problem 34:
 #include <iostream>
 using namespace std;
 
-
-int ReadDegree(int From,int To) {
-	int Grade;
-	do {
-	cout << "Enter the Grade between 0 and 100? : \n";
-	cin >> Grade;
-	} while (Grade <From || Grade >To );
-
-	return Grade;
+int ReadSalse() {
+	float Salse;
+	cout << "Enter Your Salse : \n";
+	cin >> Salse;
+	return Salse;
 
 }
 
-char CheckDegree(int Grade) {
-	if (Grade >= 90)
-		return 'A';
-	else if (Grade >= 80 && Grade <= 89)
-		return 'B';
+float CalculatePersentage(float Salse) {
 
-	else if (Grade >= 70 && Grade <= 79)
-		return 'C';
+	if (Salse >= 1000000)
+		return 0.01;
 
-	else if (Grade >= 60 && Grade <= 69)
-		return 'D';
+	else if (Salse >= 500000 && Salse < 1000000)
+		return 0.02;
 
-	else if (Grade >= 50 && Grade <= 59)
-		return 'E';
 
+	else if (Salse >= 100000 && Salse < 500000)
+		return 0.03;
+
+
+	else if (Salse >= 50000 && Salse < 100000)
+		return 0.05;
 	else
-		return 'F';
+		return 0.00;
 
 }
 
+float CalculateComission(float Salse) {
+	return CalculatePersentage(Salse) * Salse;
+}
 
+void main() {
 
-
-
-int main()
-{
-	cout<<endl<<"THe Grade is "<<CheckDegree(ReadDegree(0, 100));
-
-	return 0;
+	float Salse = ReadSalse();
+	cout << "Total Persentage = " << CalculatePersentage(Salse) << endl;
+	cout << "Total Commision = " << CalculateComission(Salse) << endl;
 
 }
