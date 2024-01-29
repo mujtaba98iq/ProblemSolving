@@ -1,0 +1,25 @@
+solving problem number 26:
+#include <iostream>
+using namespace std;
+
+int ReadNumbers() {
+	int N;
+	cout << "Enter The End of numbers to Print it\n";
+	cin >> N;
+	return N;
+}
+
+void ForNumber(int N) {
+
+	for (int i = 1;i <= N;i++) {
+		cout << i << endl;
+	}
+}
+
+
+
+int main()
+{
+	int N = ReadNumbers();
+	ForNumber(N);
+}
