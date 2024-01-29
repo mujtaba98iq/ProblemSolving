@@ -1,4 +1,4 @@
-solving problem 44 My Solving:
+--solving problem 44 My solution:
 #include <iostream>
 #include <string>
 
@@ -57,3 +57,69 @@ int main()
 	PrintTheDay(Day);
 
 }
+
+-------------------------------------------------------------
+--solving problem 44 prof solution:
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+enum enDayOfWeek {
+	Sat=7,Sun=1,Mon=2,Tue=3,Wed=4,Thu=5,Fri=6,
+};
+
+int ReadNumberInRange(string Message, int From, int To)
+{
+	int Number = 0;
+
+	do {
+		cout << Message;
+		cin >> Number;
+	} while (Number < From || Number > To);
+	return Number;
+}
+enDayOfWeek ReadDayOfWeek()
+{
+	return (enDayOfWeek)ReadNumberInRange("Enter The number of Day! \n",1,7);
+}
+
+string PrintTheDay(enDayOfWeek Day) {
+	switch (Day)
+	{
+	case enDayOfWeek::Sun:
+		return "It's SunDay";
+
+	case enDayOfWeek::Mon:
+		return  "It's MonDay";
+
+	case enDayOfWeek::Tue:
+		return  "It's TuesDay";
+
+	case enDayOfWeek::Wed:
+		return  "It's WensDay";
+
+	case enDayOfWeek::Thu:
+		return  "It's ThursDay";
+
+	case enDayOfWeek::Fri:
+		return  "It's FriDay";
+
+	case enDayOfWeek::Sat:
+		return  "It's SaturDay";
+	default:
+		return "Not Available";
+
+	}
+}
+
+
+
+
+int main()
+{
+
+	cout<<PrintTheDay(ReadDayOfWeek())<<endl;
+
+}
+
