@@ -1,0 +1,82 @@
+solving problem 42 Ostaz:
+
+#include <iostream>
+using namespace std;
+
+struct stTaskDuration
+{
+	int Days, Hours, Minutes, Seconds;
+};
+
+float ReadPositiveNumber(string Message) {
+	float Number = 0 ;
+	while (Number <=0)
+	{
+		cout << Message;
+		cin >> Number;
+	}
+	return Number;
+}
+
+stTaskDuration ReadstTaskDuration() {
+	stTaskDuration TaskDuration;
+	TaskDuration.Days = ReadPositiveNumber("Enter The number of Days! \n");
+	TaskDuration.Hours = ReadPositiveNumber("Enter The number of Hours! \n");
+	TaskDuration.Minutes = ReadPositiveNumber("Enter The number of Minutes! \n");
+	TaskDuration.Seconds = ReadPositiveNumber("Enter The number of Seconds! \n");
+	return TaskDuration;
+}
+
+float CalculateNumberOfSeconds(stTaskDuration TypeTime)
+{
+	float TotalSeconds = (TypeTime.Days * 86400) +
+		(TypeTime.Hours * 3600) +
+		(TypeTime.Minutes * 60) +
+		(TypeTime.Seconds);
+	return TotalSeconds;
+}
+
+
+int main()
+{
+	cout << "The number of Seconds is : " << CalculateNumberOfSeconds(ReadstTaskDuration());
+}
+*/
+/*
+solving problem 42 My Solotion:
+
+#include <iostream>
+using namespace std;
+
+struct stTypeTime
+{
+	int Days, Hours, Minutes, Seconds;
+};
+
+float ReadPositiveNumber(string Message) {
+	float Number = 0 ;
+	while (Number <=0)
+	{
+		cout << Message;
+		cin >> Number;
+	}
+	return Number;
+}
+
+float CalculateNumberOfSeconds(stTypeTime TypeTime)
+{
+	float TotalSeconds = (TypeTime.Days * 86400) + (TypeTime.Hours * 3600) + (TypeTime.Minutes * 60) + (TypeTime.Seconds);
+	return TotalSeconds;
+}
+
+
+int main()
+{
+	stTypeTime TypeTime;
+	TypeTime.Days = ReadPositiveNumber("Enter The number of Days! \n");
+	TypeTime.Hours = ReadPositiveNumber("Enter The number of Hours! \n");
+	TypeTime.Minutes = ReadPositiveNumber("Enter The number of Minutes! \n");
+	TypeTime.Seconds = ReadPositiveNumber("Enter The number of Seconds! \n");
+
+	cout << "The number of Seconds is : " << CalculateNumberOfSeconds(TypeTime);
+}
