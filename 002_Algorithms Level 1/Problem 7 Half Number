@@ -1,0 +1,30 @@
+--solving problem number 7:
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+
+int ReadNumber()
+{
+    int number;
+    cout << "Enter value of number to Print the half\n";
+    cin >> number;
+    return number;
+}
+
+float GetHalfNumber(int number) {
+    float halfNumber;
+    halfNumber = (float) number / 2;
+    return halfNumber;
+}
+void PrintHalfNumber(int number){
+    string Result= "The Half of Number is : "+to_string(number) +"is : " +to_string(GetHalfNumber(number)) ;
+    cout << Result << endl;
+}
+int main()
+{
+    PrintHalfNumber(ReadNumber());
+
+
+}
