@@ -1,0 +1,41 @@
+solving problem 13:
+#include <iostream>
+using namespace std;
+
+
+
+void ReadMark(int &num1, int &num2,int &num3) {
+
+    cout << "Enter Value of number 1 : \n";
+    cin >> num1;
+    cout << "Enter Value of number 2 : \n";
+    cin >> num2;
+    cout << "Enter Value of number 3 : \n";
+    cin >> num3;
+
+
+}
+int MaxOf3Numbers(int num1,int num2,int num3) {
+    int max=0;
+    if (num1 > num2)
+        if (num1 > num3)
+            max = num1;
+        else
+            max = num3;
+    else
+        if (num2 > num3)
+            max = num2;
+        else
+            max = num3;
+    return max;
+}
+void PrintMax(int num1,int num2,int num3) {
+    cout << "The number Max is : " << MaxOf3Numbers(num1,num2,num3)<<endl;
+}
+
+int main()
+{
+    int num1,  num2,num3;
+    ReadMark(num1, num2,num3);
+    PrintMax(num1, num2,num3);
+}
