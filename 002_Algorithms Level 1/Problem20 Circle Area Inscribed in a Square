@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+
+float ReadSquareSide() {
+	float A;
+	cout << "Enter value of A : \n";
+	cin >> A;
+	return A;
+}
+
+float CircleAreaInscribedSquare(float A) {
+	float pi = 3.141592653589793238;
+	float Area;
+	 Area = (pi * pow(A,2)) / 4;
+	 return Area;
+}
+
+void PrintResult(float Area) {
+	cout << "Cire  Area Diameter is : "<< CircleAreaInscribedSquare(Area) << endl;
+}
+
+
+
+int main()
+{
+	
+	PrintResult(ReadSquareSide());
+  
+}
