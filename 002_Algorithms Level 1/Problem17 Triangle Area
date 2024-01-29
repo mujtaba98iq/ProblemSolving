@@ -1,0 +1,34 @@
+*
+
+solving problem number 17 :
+
+#include <iostream>
+using namespace std;
+
+
+void ReadInfoTringle(float &a,float &h) {
+	cout << "Enter value of a : \n";
+	cin >> a;
+	cout << "Enter value of h : \n";
+	cin >> h;
+}
+
+float AreaOfTringle(float a,float h) {
+	float Area;
+	 Area = ( a / 2 ) * h  ;
+	 return Area;
+}
+
+void PrintAreaRectangleDigonal(float a,float h) {
+	cout << "Tringle Area is : "<<AreaOfTringle(a, h) << endl;
+}
+
+
+
+int main()
+{
+	float a, h;
+	ReadInfoTringle(a,h);
+	PrintAreaRectangleDigonal(a,h);
+
+}
