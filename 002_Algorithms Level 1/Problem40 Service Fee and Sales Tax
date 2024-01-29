@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+float ReadPositiveNumber(string massage)
+{
+	float number=0;
+
+	while (number <= 0 ) { 
+	    cout << massage <<" : " << endl;
+		cin >> number;
+	}
+	
+		return number;
+}
+
+float TotalBillAfter(float TotalBill)
+{
+	TotalBill = TotalBill * 1.1;
+	TotalBill = TotalBill * 1.16;
+	
+	return TotalBill;
+
+}
+
+
+int main()
+{
+	float TotalBill = ReadPositiveNumber("Enter The  Bill value ! : ");
+	cout << "The Total Bill is = " << TotalBillAfter(TotalBill);
+
+}
