@@ -1,0 +1,32 @@
+* solving problem 12:
+#include <iostream>
+using namespace std;
+
+
+
+void ReadMark(int &num1, int &num2) {
+
+    cout << "Enter Value of number 1 : \n";
+    cin >> num1;
+    cout << "Enter Value of number 2 : \n";
+    cin >> num2;
+
+}
+int CheckMax(int num1,int num2) {
+    int max=0;
+    if (num1 > num2)
+        max = num1;
+    else
+        max = num2;
+    return max;
+}
+void PrintMax(int num1,int num2) {
+    cout << "The number Max is : " << CheckMax(num1,num2)<<endl;
+}
+
+int main()
+{
+    int num1,  num2;
+    ReadMark(num1, num2);
+    PrintMax(num1, num2);
+}
