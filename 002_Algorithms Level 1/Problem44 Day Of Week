@@ -1,0 +1,59 @@
+solving problem 44 My Solving:
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
+
+int ReadPositiveNumber(string Message) {
+	int Number = 0 ;
+	while (Number <=0)
+	{
+		cout << Message;
+		cin >> Number;
+	}
+	return Number;
+}
+
+void PrintTheDay(int Day) {
+	switch (Day)
+	{
+	case 1:
+		cout << "It's SunDay";
+		
+	case 2:
+		cout << "It's MonDay";
+		
+	case 3:
+		cout << "It's TuesDay";
+		
+	case 4:
+		cout << "It's WensDay";
+		
+
+	case 5:
+		cout << "It's ThursDay";
+		
+	case 6:
+		cout << "It's FriDay";
+		
+	case 7:
+		cout << "It's SaturDay";
+
+		
+	default:
+		cout << "Wring Day";
+		PrintTheDay(  ReadPositiveNumber("Enter Another Number ! : \n"));
+	}
+}
+
+
+
+
+int main()
+{
+	int Day = ReadPositiveNumber("Enter the Number of Days! \n");
+	PrintTheDay(Day);
+
+}
