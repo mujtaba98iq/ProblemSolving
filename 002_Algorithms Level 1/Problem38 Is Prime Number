@@ -1,0 +1,51 @@
+solving problem 38
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+enum enPrimeNotPrime {
+	Prime = 1, NotPrime = 2,
+};
+
+
+float ReadPositiveNumber(string massage)
+{
+	float number=0;
+
+	while (number <= 0 ) {
+		cout << massage <<" : " << endl;
+		cin >> number;
+	}
+
+		return number;
+}
+enPrimeNotPrime CheckPrime(int Number) {
+	int M = round(Number / 2);
+	for (int counter = 2;counter <= M;counter++) {
+		if (Number % counter == 0)
+			return enPrimeNotPrime::NotPrime;
+	}
+	return enPrimeNotPrime::Prime;
+}
+
+void PrintNumberType(int number){
+	switch (CheckPrime(number))
+	{
+	case enPrimeNotPrime::Prime:
+		cout << "The number is Prime" << endl;
+		break;
+	case enPrimeNotPrime::NotPrime:
+		cout << "The number is not prime" << endl;
+
+	}
+
+
+}
+
+int main()
+{
+	PrintNumberType(ReadPositiveNumber("Enter value of the number ! :"));
+
+
+}
