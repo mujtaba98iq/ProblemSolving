@@ -1,0 +1,32 @@
+*--solving problem number 19 :
+
+#include <iostream>
+using namespace std;
+
+
+float ReadInfoCircleDiameter() {
+	float D;
+	cout << "Enter value of D : \n";
+	cin >> D;
+	return D;
+}
+
+float CircleAreaDiameter(float D) {
+	float pi = 3.141592653589793238;
+	float Area;
+	 Area = (pi * pow(D,2)) / 4;
+	 return Area;
+}
+
+void PrintAreaCircleDiameter(float D) {
+	cout << "Cire  Area Diameter is : "<< CircleAreaDiameter(D) << endl;
+}
+
+
+
+int main()
+{
+
+	PrintAreaCircleDiameter(ReadInfoCircleDiameter());
+
+}
