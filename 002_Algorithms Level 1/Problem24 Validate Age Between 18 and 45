@@ -1,0 +1,28 @@
+Solving problem 24
+#include <iostream>
+using namespace std;
+int ReadInfoCircleAreaDescribeed() {
+	int Age;
+	cout << "Enter the value of Age : \n";
+	cin >> Age;
+	return Age;
+}
+
+bool ValditeNumberInRange(int Age,int From,int To) {
+	return (Age >= From && Age <= To);
+}
+
+void PrintResult(int Age) {
+	if (ValditeNumberInRange(Age, 18, 40))
+		cout << "You Age is Validate" << endl;
+	else
+		cout << "Your Age is Not Validate !" << endl;
+}
+
+
+int main()
+{
+	PrintResult(ReadInfoCircleAreaDescribeed());
+	return 0;
+}
+
