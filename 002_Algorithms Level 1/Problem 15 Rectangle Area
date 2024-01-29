@@ -1,0 +1,31 @@
+//soving problem number 15:
+#include <iostream>
+using namespace std;
+
+
+
+void ReadMark(float &hight, float &width) {
+
+    cout << "Enter Value of Higth  : \n";
+    cin >> hight;
+    cout << "Enter Value of width  : \n";
+    cin >> width;
+    
+}
+
+float FindArea(float hight, float width) {
+    float Area=0;
+    Area = hight * width;
+    return Area;
+}
+void PrintArea(float Area) {
+    cout << "The Area of Rectangle is : " << Area<<endl;
+}
+
+int main()
+{
+    float hight, width;
+    ReadMark(hight, width);
+    PrintArea(FindArea(hight, width));
+    return 0;
+}
