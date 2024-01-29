@@ -1,0 +1,69 @@
+--solving problem 9 my solution
+#include <iostream>
+#include <string>
+using namespace std;
+struct stNumber {
+    int number1, number2, number3;
+};
+
+void ReadNumbers(stNumber &numbers) {
+       int number1, number2, number3;
+    cout << "Enter the number 1:\n";
+    cin >> numbers.number1;
+    cout << "Enter the number 2:\n";
+    cin >> numbers.number2;
+    cout << "Enter the number 3:\n";
+    cin >> numbers.number3;
+}
+
+int sumNumbers(stNumber numbers) {
+    int sum = 0;
+    sum = numbers.number1 + numbers.number2 + numbers.number3;
+    return sum;
+}
+void PrintSum(int sum) {
+    cout << "Ths sumation of Three numbers is: " <<sum<< endl;
+}
+
+
+int main()
+{
+    stNumber numbers;
+    ReadNumbers(numbers);
+    PrintSum(sumNumbers(numbers));
+
+
+}
+
+-----------------------------------------------------
+--solving probelm 9 prof solution
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+void ReadNumbers(int& num1, int& num2, int& num3) {
+
+    cout << "Enter the number 1:\n";
+    cin >> num1;
+    cout << "Enter the number 2:\n";
+    cin >> num2;
+    cout << "Enter the number 3:\n";
+    cin >> num3;
+}
+
+int sumNumbers(int num1, int num2, int num3) {
+    int sum = 0;
+    sum = num1 + num2 + num3;
+    return sum;
+}
+void PrintSum(int sum) {
+    cout << "Ths sumation of Three numbers is: " << sum << endl;
+}
+
+
+int main()
+{
+    int number1, number2, number3;
+    ReadNumbers(number1, number2, number3);
+    PrintSum(sumNumbers(number1, number2, number3));
