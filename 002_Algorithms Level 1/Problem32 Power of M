@@ -1,0 +1,45 @@
+ problem Number 32
+#include <iostream>
+using namespace std;
+
+
+int ReadNumber() {
+	int Number;
+	cout << "Enter the number1: \n";
+	cin >> Number;
+	return Number;
+
+}
+int ReadOfM () {
+
+	int M;
+	cout << "Enter the Number of Power: \n";
+	cin >> M;
+
+	return M;
+}
+
+int PowerOfNumebr(int Number,int M) {
+
+	int PowerM = 1;
+	if (M == 0) {
+		return 1;
+	}
+	else {
+		for (int i = M;i >0;i--) {
+
+		 PowerM = PowerM * Number;
+	}
+
+	}
+
+
+	return PowerM;
+}
+
+int main()
+{
+	cout << PowerOfNumebr(ReadNumber(), ReadOfM()) << endl;
+	return 0;
+
+}
