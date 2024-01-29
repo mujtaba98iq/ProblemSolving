@@ -1,0 +1,31 @@
+problem NUmber 31
+#include <iostream>
+using namespace std;
+
+
+float ReadNumber() {
+	float Number;
+	cout << "Enter the number: \n";
+	cin >> Number;
+	return Number;
+}
+
+void PowerOfNumebr() {
+	float Number = ReadNumber();
+
+	float PowerTow = Number * Number;
+
+	float PowerThree = Number * Number * Number;
+
+	float PowerFour = Number * Number * Number * Number;
+	cout << PowerTow << " " << PowerThree << " " << PowerFour << endl;
+
+
+}
+
+int main()
+{
+	PowerOfNumebr();
+	return 0;
+
+}
