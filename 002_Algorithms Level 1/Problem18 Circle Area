@@ -1,0 +1,35 @@
+solving problem number 18 :
+
+#include <iostream>
+using namespace std;
+
+
+float ReadInfoCircle() {
+	float r;
+	cout << "Enter value of r : \n";
+	cin >> r;
+	return r;
+}
+
+float CircleArea(float r) {
+	float pi = 3.141592653589793238;
+	float Area;
+	 Area = pi * pow(r,2);
+	 return Area;
+}
+
+void PrintAreaCircle(float r) {
+	cout << "Tringle Area is : "<< CircleArea(r) << endl;
+}
+
+
+
+int main()
+{
+
+	PrintAreaCircle(ReadInfoTringle());
+
+}
+
+*/
+
