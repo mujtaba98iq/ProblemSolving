@@ -1,0 +1,32 @@
+*
+solving problem number 16 :
+#include <iostream>
+using namespace std;
+
+
+void ReadInfoRectangleDigonal(float &a,float &d) {
+	cout << "Enter value of a : \n";
+	cin >> a;
+	cout << "Enter value of d : \n";
+	cin >> d;
+}
+
+float AreaOfRectangleDigonal(float a,float d) {
+	float Area;
+	 Area=a * sqrt(pow(d,2) - pow(a , 2));
+	 return Area;
+}
+
+void PrintAreaRectangleDigonal(float a,float d) {
+	cout << "Area Of Rectangle Digonal is : "<<AreaOfRectangleDigonal(a,d) << endl;
+}
+
+
+
+int main()
+{
+	float a, d;
+	ReadInfoRectangleDigonal(a, d);
+	PrintAreaRectangleDigonal(a, d);
+
+}
