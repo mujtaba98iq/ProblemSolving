@@ -1,0 +1,37 @@
+
+#include <iostream> 
+using namespace std;
+
+struct stTypeMony {
+	int Penny, Nickel, Dime, Qurater, Dollar;
+};
+
+stTypeMony ReadNumberOfMony() {
+	stTypeMony typeMony;
+	cout << "ENter Number of pennys : \n";
+	cin >> typeMony.Penny;
+	cout << "ENter Number of Nickels : \n";
+	cin >> typeMony.Nickel;
+	cout << "ENter Number of Dime \n";
+	cin >> typeMony.Dime;
+	cout << "ENter Number of Quarter : \n";
+	cin >> typeMony.Qurater;
+	cout << "ENter Number of Dollar : \n";
+	cin >> typeMony.Dollar;
+	return typeMony;
+}
+
+int CalculateNumberOfMony(stTypeMony NumberTypeMony) {
+	int TotalPenny = 0;
+	TotalPenny=NumberTypeMony.Penny + (NumberTypeMony.Nickel * 5) + (NumberTypeMony.Dime * 10) +
+		(NumberTypeMony.Qurater * 25) + (NumberTypeMony.Dollar *100);
+	return TotalPenny;
+}
+
+
+
+void main() {
+	int TotalPenny = CalculateNumberOfMony(ReadNumberOfMony());
+	cout << "Total Penny : " << TotalPenny << endl;
+	cout << "Total Dollar : " << (float) TotalPenny / 100 << endl;
+}
