@@ -1,0 +1,77 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+enum enMonthOfYear {
+	Jun = 1, Feb = 2, Mar = 3, Apr = 4, May = 5, June = 6, July = 7, Aug = 8, Sep = 9, Oct = 10, Nov = 11,Dec = 12,
+};
+
+int ReadNumberInRange(string Message, int From, int To)
+{
+	int Number = 0;
+
+	do {
+		cout << Message;
+		cin >> Number;
+	} while (Number < From || Number > To);
+	return Number;
+}
+enMonthOfYear ReadMonthOfYear()
+{
+	return (enMonthOfYear) ReadNumberInRange("Enter The number of Month! \n",1,12);
+}
+
+string PrintTheMonth(enMonthOfYear Day) {
+	switch (Day)
+	{
+	case enMonthOfYear::Jun:
+		return "It's January";
+		
+	case enMonthOfYear::Feb:
+		return  "It's Februray";
+		
+	case enMonthOfYear::Mar:
+		return  "It's March";
+		
+	case enMonthOfYear::Apr:
+		return  "It's April";
+		
+	case enMonthOfYear::May:
+		return  "It's May";
+		
+	case enMonthOfYear::June:
+		return  "It's June";
+		
+	case enMonthOfYear::July:
+		return  "It's July";
+
+	case enMonthOfYear::Aug:
+		return  "It's August";
+
+	case enMonthOfYear::Sep:
+		return  "It's September";
+
+	case enMonthOfYear::Oct:
+		return  "It's October";
+
+	case enMonthOfYear::Nov:
+		return  "It's November";
+
+	case enMonthOfYear::Dec:
+		return  "It's December";
+		
+	default:
+		return "Wrong Month";
+	}
+}
+
+
+
+
+int main()
+{
+	 
+	cout<<PrintTheMonth(ReadMonthOfYear())<<endl;
+
+}
