@@ -1,0 +1,35 @@
+* soving Probelm 8
+#include <iostream>
+#include <string>
+using namespace std;
+enum enPassOrFail {
+    pass=1,
+    fail=2,
+};
+
+int ReadMark() {
+    int mark;
+    cout << "Enter your Mark to Check pass or fail\n";
+    cin >> mark;
+    return mark;
+}
+
+enPassOrFail CheckMark(int mark) {
+    if (mark >= 50)
+        return enPassOrFail::pass;
+    else
+        return enPassOrFail::fail;
+}
+
+void PrintResult(int mark) {
+    if (CheckMark(mark) == enPassOrFail::pass)
+        cout << "You are Passed the exam" << endl;
+    else
+        cout << "You are Fail the exam" << endl;
+
+}
+
+int main()
+{
+    PrintResult(ReadMark());
+}
