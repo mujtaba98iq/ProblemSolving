@@ -1,0 +1,41 @@
+* solving probelm 10 
+#include <iostream>
+#include <string>
+using namespace std;
+struct stNumber {
+    int number1, number2, number3;
+};
+
+void ReadNumbers(stNumber &numbers) {
+    int number1, number2, number3;
+    cout << "Enter the number 1:\n";
+    cin >> numbers.number1;
+    cout << "Enter the number 2:\n";
+    cin >> numbers.number2;
+    cout << "Enter the number 3:\n";
+    cin >> numbers.number3;
+}
+
+int sumNumbers(stNumber numbers) {
+    int sum = 0;
+    sum = numbers.number1 + numbers.number2 + numbers.number3;
+    return sum;
+}
+
+float CalcualtAvg(int sum) {
+    return (float) sum / 3;
+}
+
+void PrintSum(float avg) {
+    cout << "Ths Agarage of Three numbers is: " << avg << endl;
+}
+
+
+int main()
+{
+    stNumber numbers;
+    ReadNumbers(numbers);
+    PrintSum(CalcualtAvg(sumNumbers(numbers)));
+
+
+}
