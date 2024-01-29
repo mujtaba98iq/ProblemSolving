@@ -1,0 +1,39 @@
+
+#include <iostream>
+using namespace std;
+int ReadAge() 
+{
+	int Age;
+	cout << "Enter the value of Age : \n";
+	cin >> Age;
+	return Age;
+}
+
+bool ValditeNumberInRange(int Age,int From,int To) {
+	return (Age >= From && Age <= To);
+}
+
+void PrintResult(int Age) {
+	if (ValditeNumberInRange(Age, 18, 40))
+		cout << "You Age is Validate" << endl;
+	else {
+		cout << "Your Age is Not Validate !" << endl;
+	}
+
+}
+int ReadUntilAgeBetween(int From,int To) {
+	int Age = 0;
+	do {
+
+		Age = ReadAge();
+
+	} while (!ValditeNumberInRange(Age, From, To));
+
+	return Age;
+}
+
+int main()
+{	
+	PrintResult(ReadUntilAgeBetween(18,45));
+	return 0;
+}
