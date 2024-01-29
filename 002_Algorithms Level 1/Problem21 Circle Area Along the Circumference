@@ -1,0 +1,27 @@
+*
+Solving problem 21
+
+#include <iostream>
+using namespace std;
+float ReadInfoCircleAreaCircumference() {
+	float L;
+	cout << "Enter the value of J : \n";
+	cin >> L;
+	return L;
+}
+
+float CalculateCircleAreaCircumference(float L) {
+	float Area;
+	float PI = 3.14;
+	Area = pow(L, 2) / (4 * PI);
+	return Area;
+}
+
+void PrintAreaCircleAreaCircumference(float L) {
+	cout << "THe Value of Circle Area Circumference is: " << CalculateCircleAreaCircumference(L)<<endl;
+}
+
+int main()
+{
+	PrintAreaCircleAreaCircumference(ReadInfoCircleAreaCircumference());
+}
