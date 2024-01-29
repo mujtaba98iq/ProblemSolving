@@ -1,0 +1,57 @@
+Porblem 33 My solving
+#include <iostream>
+using namespace std;
+
+enum enDegrees {
+	A=1,B=2,C=3,D=4,E=4,F=5,
+};
+
+int ReadDegree() {
+	int Degree;
+	cout << "Enter the Degree: \n";
+	cin >> Degree;
+	return Degree;
+
+}
+
+enDegrees CheckDegree() {
+	int Degree = ReadDegree();
+	enDegrees Degrees;
+	if (Degree >= 90)
+		return enDegrees::A;
+	else if (Degree >= 80 && Degree <= 89)
+		return enDegrees::B;
+	else if (Degree >= 70 && Degree <= 79)
+		return enDegrees::C;
+	else if (Degree >= 60 && Degree <= 69)
+		return enDegrees::D;
+	else if (Degree >= 50 && Degree <= 59)
+		return enDegrees::E;
+	else
+		return enDegrees::F;
+}
+
+void PrintResult(enDegrees Result) {
+	if (Result == enDegrees::A)
+		cout << "A \n";
+	else if (Result == enDegrees::B)
+		cout << "B \n";
+	else if (Result == enDegrees::C)
+		cout << "C \n";
+	else if (Result == enDegrees::E)
+		cout << "E \n";
+	else
+		cout << "Your Are Failer" << endl;
+}
+
+
+
+
+
+int main()
+{
+	PrintResult(CheckDegree());
+
+	return 0;
+
+}
