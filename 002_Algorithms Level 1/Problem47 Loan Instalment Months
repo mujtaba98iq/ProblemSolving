@@ -1,0 +1,22 @@
+solving Problem 47:
+#include <iostream>
+using namespace std;
+
+int ReadPsitiveNumber(string Massage) {
+	int Number;
+	cout << Massage;
+	cin >> Number;
+	return Number;
+}
+
+void NumberOfMonthYouNeed() {
+	int LoanAmount = ReadPsitiveNumber("Enter The number of Loan Amount! \n");
+	int MonthlyPayment = ReadPsitiveNumber("Enter The number of Monthly Payment! \n");
+	cout<< LoanAmount / MonthlyPayment<<" Months"<<endl;
+}
+
+
+int main()
+{
+	NumberOfMonthYouNeed();
+}
