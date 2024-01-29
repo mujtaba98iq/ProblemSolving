@@ -1,0 +1,100 @@
+
+
+--Solving Problem 4 Hire a driver Case 1
+--my Solution
+#include <iostream>
+#include <string>
+using namespace std;
+
+enum enHired_Rejected 
+{
+	Hired = 1,Rejected=2
+};
+
+void PrintHired_or_not(enHired_Rejected HiredOrNot)
+{
+	if (HiredOrNot == enHired_Rejected::Hired)
+		cout << "Your Are Hired . " << endl;
+	else
+		cout << "You Are Reject .\n";
+}
+
+void ReadInfo(string &DriverLicense,int &Age)
+{
+
+	cout << "Enter Your Age? "<<endl;
+	cin >> Age;
+	cout << "Do You Have Dirver Licens? " << endl;
+	cin >> DriverLicense;
+}
+
+enHired_Rejected CheckDriver(string &DirverLicense,int &Age)
+{
+	enHired_Rejected Check;
+	if (DirverLicense == "yes" && Age > 18)
+		Check = enHired_Rejected::Hired;
+	else
+		Check = enHired_Rejected::Rejected;
+	return Check;
+
+}
+
+int main()
+{
+	int Age;
+	string DriverLicense;
+	ReadInfo(DriverLicense, Age);
+	PrintHired_or_not(CheckDriver(DriverLicense,Age));
+	return 0;
+}
+
+----------------------------------------------------------------------------------
+--Solving Problem 4 Hire a driver Case 1
+--prof Solution
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct stInfo
+{
+	int Age;
+	bool HasDrivingLicense;
+};
+
+bool IsAccepted(stInfo Info)
+{
+	return (Info.Age >= 18 && Info.HasDrivingLicense);
+
+}
+
+stInfo ReadInfo()
+{
+	stInfo Info;
+	
+	cout << "Enter Your Age? " << endl;
+	cin >> Info.Age;
+	cout << "Do You Have Dirver Licens? " << endl;
+	cin >> Info.HasDrivingLicense;
+
+	return Info;
+}
+
+void PrintHired_or_not(stInfo Info)
+{
+	;
+	if (IsAccepted(Info))
+		cout << "Hierd\n";
+	else
+		cout << "Rejected\n";
+
+
+}
+
+int main()
+{
+	stInfo Info;
+	PrintHired_or_not(ReadInfo());
+	return 0;
+}
+
+
