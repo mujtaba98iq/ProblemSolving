@@ -1,0 +1,33 @@
+Solving problem 23
+#include <iostream>
+using namespace std;
+void ReadInfoCircleAreaDescribeed(float &A,float &B,float &C) {
+
+	cout << "Enter the value of A : \n";
+	cin >> A;
+	cout << "Enter the value of B : \n";
+	cin >> B;
+	cout << "Enter the value of C : \n";
+	cin >> C;
+}
+
+float CalculateCircleAreaDescribeed(float A,float B,float C) {
+	float Area;
+	float PI = 3.14;
+	float p = (A + B + C) / 2;
+	float d = ((A * B * C) / (4 * (sqrt(p * (p - A) * (p - B) * (p - C)))));
+	Area = PI*pow(d,2);
+	return Area;
+}
+
+void PrintAreaCircleAreaDescribeed(float Area) {
+	cout << "THe Value of Circle Area Circumference is: " << Area<<endl;
+}
+
+int main()
+{
+	float A, B, C;
+	ReadInfoCircleAreaDescribeed(A, B,C);
+
+	PrintAreaCircleAreaDescribeed(CalculateCircleAreaDescribeed(A,B,C));
+}
