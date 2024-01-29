@@ -1,0 +1,41 @@
+solving problem 37
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
+
+float ReadNumber(string massage){
+	int number=0;
+		cout << massage <<" : " << endl;
+		cin >> number;
+		return number;
+}
+int sumNumbers() {
+	int sum = 0;
+	int counter = 1;
+	int number = ReadNumber("Enter value of number " + to_string(counter)) ;
+
+	do
+	{
+		if (number == -99)
+		{
+			break;
+		}
+		sum += number;
+		counter += 1;
+	} while (number != -99);
+
+	return sum;
+
+}
+
+
+int main()
+{
+	cout<<"The result is : "<<sumNumbers();
+
+
+}
