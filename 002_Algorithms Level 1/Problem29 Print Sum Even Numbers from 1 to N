@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+enum CheckOddOrEven {
+	Odd=1,Even=2
+};
+
+int ReadNumbers() {
+	int N;
+	cout << "Enter The End of numbers to Print it\n";
+	cin >> N;
+	return N;
+}
+
+CheckOddOrEven ForNumber(int N) {
+		if (N % 2 != 0)
+			return CheckOddOrEven::Odd;
+		else
+			return CheckOddOrEven::Even;
+
+}
+int SumNumbers(int N) {
+	int sum=0;
+
+	for (int i = 1;i <= N;i++) {
+		if (ForNumber(i) == CheckOddOrEven::Odd) {
+			sum =sum + i;
+		}
+
+	}
+	return sum;
+}
+
+
+
+int main()
+{
+	int N = ReadNumbers();
+	cout<<"The Sum of Odd Number from 1 to "<<N<<"is : "<<SumNumbers(N)<<endl;
+}
