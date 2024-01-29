@@ -1,0 +1,36 @@
+--sollvin problem 6:
+
+#include <iostream>
+using namespace std;
+
+struct stInfo
+{
+    string firstName,lastName;
+};
+stInfo ReadInfo() {
+    stInfo Info;
+    cout << "Enter Your FirstName\n";
+    cin >> Info.firstName;
+    cout << "Enter Your lastName\n";
+
+    cin >> Info.lastName;
+    return Info;
+}
+string GetFullName(stInfo Info,bool Reversed) {
+    string fullName;
+    if(Reversed)
+        fullName = Info.lastName + " " + Info.firstName;
+    else
+        fullName= Info.firstName +" "+ Info.lastName;
+    return fullName;
+}
+void PrintInfo(string fullName) {
+    cout << "Your Full Name is: " << fullName<<endl;
+}
+
+int main()
+{
+
+    PrintInfo(GetFullName(ReadInfo(),true));
+
+}
