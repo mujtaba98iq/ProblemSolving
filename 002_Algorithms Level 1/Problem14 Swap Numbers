@@ -1,0 +1,35 @@
+solving problem number 14:
+#include <iostream>
+using namespace std;
+
+
+
+void ReadMark(int &num1, int &num2) {
+
+    cout << "Enter Value of number 1 : \n";
+    cin >> num1;
+    cout << "Enter Value of number 2 : \n";
+    cin >> num2;
+
+}
+void SwapTowNumber(int &num1,int &num2) {
+    int c=0;
+    c = num1;
+    num1 = num2;
+    num2 = c;
+}
+
+void PrintSwap(int num1,int num2) {
+    cout << "The number1 is : " << num1<<endl;
+    cout << "The number2 is : " << num2<<endl;
+
+}
+
+int main()
+{
+    int num1, num2;
+    ReadMark(num1, num2);
+    PrintSwap(num1, num2);
+    SwapTowNumber(num1, num2);
+    PrintSwap(num1, num2);
+}
