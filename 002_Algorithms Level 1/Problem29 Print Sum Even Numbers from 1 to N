@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+enum CheckOddOrEven {
+	Odd=1,Even=2
+};
+
+int ReadNumbers() {
+	int N;
+	
+	do {
+		cout << "Enter N? : \n";
+		cin >> N;
+	}while(N < 0);
+	
+	return N;
+}
+
+
+int FindFactorial(int N) {
+	int fack=1;
+
+	for (int i = N;i >= 1;i--) {
+		
+			fack  *= i;	
+	}
+	return fack;
+}
+
+
+
+int main()
+{
+	int N = ReadNumbers();
+	cout<<"The factorial of Number : "<<N<<" is : "<<FindFactorial(N) << endl;
+}
