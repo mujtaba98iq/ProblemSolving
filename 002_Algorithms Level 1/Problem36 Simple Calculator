@@ -1,0 +1,52 @@
+solving problem 36
+#include <iostream>
+using namespace std;
+
+enum enOperationType {
+	 sum='+',
+	 sub='-',
+	 mult='*',
+	 divid='/',
+};
+int ReadNumber(string massage){
+	int number;
+	cout << massage<<endl;
+	cin >> number;
+	return number;
+}
+enOperationType ReadOpType() {
+	enOperationType opType;
+	char OT ='+';
+	cout << "Chosse the operation (+,-,*,/)? \n";
+
+	cin >> OT;
+	return (enOperationType)OT;
+}
+
+float Calculate(int number1 ,int number2 ,enOperationType op) {
+
+
+	switch (op)
+	{
+	case (enOperationType::sum):
+		number1 + number2;
+	case (enOperationType::sub):
+		number1 - number2;
+	case (enOperationType::mult):
+		number1 * number2;
+	case (enOperationType::divid):
+		number1 / number2;
+	default:
+		number1 + number2;
+	}
+}
+
+
+int main()
+{
+	int number1 = ReadNumber("Enter Number 1");
+	int number2 = ReadNumber("Enter Number 2");
+	enOperationType op = ReadOpType();
+	cout << "The Result = " << Calculate(number1, number2, op) << endl;
+}
+
