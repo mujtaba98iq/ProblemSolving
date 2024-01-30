@@ -1,0 +1,10 @@
+
+Select Count(*) from 
+(
+Select distinct FuelTypes.FuelTypeName as FuelTypeName, Makes.Make from VehicleDetails
+Inner Join FuelTypes
+On FuelTypes.FuelTypeID=VehicleDetails.FuelTypeID
+Inner Join Makes 
+on Makes.MakeID=VehicleDetails.MakeID
+where ( FuelTypeName=N'GAS')
+)R1
