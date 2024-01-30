@@ -1,0 +1,4 @@
+SELECT Found=1
+where Exists ( Select Top 1 *
+FROM          VehicleDetails where
+						Year =1950)
