@@ -1,0 +1,6 @@
+
+SELECT BodyName , VehicleDetails.*
+FROM            Bodies INNER JOIN
+                         VehicleDetails ON Bodies.BodyID = VehicleDetails.BodyID
+						 where BodyName in ( 'Coupe' , 'Hatchback', 'Sedan')
+						 and VehicleDetails.Year in (2008,2020,2021)
