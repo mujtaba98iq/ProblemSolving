@@ -1,0 +1,5 @@
+Select Distinct Makes.Make as MakesName,DriveTypes.DriveTypeName,Count(*) as TotalVehicls from VehicleDetails
+Inner join Makes on Makes.MakeID=VehicleDetails.MakeID
+inner join DriveTypes on DriveTypes.DriveTypeID=VehicleDetails.DriveTypeID
+group by DriveTypes.DriveTypeName, Makes.Make
+order by TotalVehicls Desc, MakesName asc
