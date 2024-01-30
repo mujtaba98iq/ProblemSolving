@@ -1,0 +1,3 @@
+
+Select Count(*) as TotalWithNoSpecifiedDoors from VehicleDetails
+where NumDoors is null
