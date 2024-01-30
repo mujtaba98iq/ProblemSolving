@@ -1,0 +1,8 @@
+
+Select Count(*)  MakeWithFWD from
+(
+Select Distinct Makes.Make,DriveTypes.DriveTypeName from VehicleDetails
+Inner join Makes on Makes.MakeID=VehicleDetails.MakeID
+inner join DriveTypes on DriveTypes.DriveTypeID=VehicleDetails.DriveTypeID
+where (DriveTypes.DriveTypeName ='FWD')
+)R1
