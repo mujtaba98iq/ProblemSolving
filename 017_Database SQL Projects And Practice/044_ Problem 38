@@ -1,8 +1,2 @@
-
-select Count(*) as NumberOfVehiclesAboveAverageEngineCC from
-(
- 
-	Select ID,VehicleDetails.Vehicle_Display_Name from VehicleDetails
-	where Engine_CC > ( select  Avg(Engine_CC) as MinEngineCC  from VehicleDetails )
-
-) R1
+Select  distinct  Engine_CC from VehicleDetails
+Order By Engine_CC Desc
