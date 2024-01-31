@@ -1,0 +1,3 @@
+select Employees.name,Employees.ManagerID,Employees.Salary ,Managers.Name 
+from Employees
+inner join Employees as Managers on Employees.ManagerID=Managers.EmployeeID
