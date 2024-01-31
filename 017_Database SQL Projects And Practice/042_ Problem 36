@@ -1,0 +1,3 @@
+
+Select VehicleDetails.Vehicle_Display_Name from VehicleDetails
+where Engine_CC=(select MAX(Engine_CC) as MAXEngineCC from  VehicleDetails)
