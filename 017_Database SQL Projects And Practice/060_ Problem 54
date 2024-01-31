@@ -1,0 +1,8 @@
+select Employees.name,Employees.ManagerID,Employees.Salary ,
+case 
+when Managers.Name is Null then Employees.Name
+else Managers.Name
+end  as ManagersName
+from Employees
+Left join Employees as Managers on Employees.ManagerID=Managers.EmployeeID
+where Managers.Name='Mohammed'
