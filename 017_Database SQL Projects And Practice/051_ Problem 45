@@ -1,0 +1,5 @@
+Select Makes.Make , Count(*) as TotalSUbModel from Makes
+inner Join MakeModels
+on Makes.MakeID=MakeModels.MakeID
+group by Make
+order by TotalSUbModel desc
