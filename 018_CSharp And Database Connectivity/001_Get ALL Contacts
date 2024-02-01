@@ -1,0 +1,62 @@
+using System;
+using System.Data;
+using System.Net;
+using System.Data.SqlClient;
+
+namespace ADO.NET_Contection_to_Database
+{
+    public class Program
+    {
+        static string connectionString = "Server=.;Database=ContactsDB;User Id=sa;Password=sa123456;"; // Replace with your actual connection string
+
+        static void PrintAllContacts()
+        {
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            string Query = "Select * from Contacts";
+
+            SqlCommand command = new SqlCommand(Query, connection);
+
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    int ContactID = (int)reader["ContactID"];
+                    string FirstName = (string)reader["FirstName"];
+                    string LasttName = (string)reader["LastName"];
+                    string Email = (string)reader["Email"];
+                    string Phone = (string)reader["Phone"];
+                    string adderss = (string)reader["Address"];
+                    int CountryID = (int)reader["CountryID"];
+
+                    Console.WriteLine($"Contact ID: {ContactID}");
+                    Console.WriteLine($"Name: {FirstName} {LasttName}");
+                    Console.WriteLine($"Email: {Email}");
+                    Console.WriteLine($"Phone: {Phone}");
+                    Console.WriteLine($"Address: {adderss}");
+                    Console.WriteLine($"Country ID: {CountryID}");
+                    Console.WriteLine();
+
+                }
+                reader.Close();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        static void Main(string[] args)
+        {
+        
+            PrintAllContacts();
+            Console.ReadKey();
+
+        }
+    }
+}
