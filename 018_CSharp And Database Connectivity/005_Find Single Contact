@@ -1,0 +1,98 @@
+using System;
+using System.Data;
+using System.Net;
+using System.Data.SqlClient;
+
+public class Program
+{
+    static string connectionString = "Server=.;Database=ContactsDB;User Id=sa;Password=sa123456;"; // Replace with your actual connection string
+   
+    struct stContact
+    {
+        public int ID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Address { get; set; }
+        public int CountryID { get; set; }
+    }
+
+    static bool GetFirstRowFirstColumn(int ContactID,ref stContact contact)
+    {
+        bool IsFound=false;
+        SqlConnection connection = new SqlConnection(connectionString);
+
+        string query = "SELECT * FROM Contacts WHERE ContactID =@ContactID";
+
+
+        SqlCommand command = new SqlCommand(query, connection);
+        command.Parameters.AddWithValue("@ContactID", ContactID );
+
+        try
+        {
+                    connection.Open();
+
+                    SqlDataReader Reader = command.ExecuteReader();
+
+                    if (Reader.Read())
+                    {
+                contact.ID = (int)Reader["ContactID"];
+                contact.FirstName = (string)Reader["FirstName"];
+                contact.LastName = (string)Reader["LastName"];
+                contact.Email = (string)Reader["Email"];
+                contact.Phone = (string)Reader["Phone"];
+                contact.Address = (string)Reader["Address"];
+                contact.CountryID = (int)Reader["CountryID"];
+                IsFound= true ;
+                    }
+                    else
+                    {
+                IsFound = false ;
+                    }
+                    Reader.Close();
+                    connection.Close();
+
+                }
+
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+                return IsFound;
+
+    }
+
+
+
+
+
+
+    public static void Main()
+    {
+
+
+        stContact contact= new stContact();
+
+
+        if(GetFirstRowFirstColumn(100,ref contact))
+        {
+           Console.WriteLine($"contact.ID {contact.ID}");
+           Console.WriteLine($"contact.FirstName {contact.FirstName}");
+           Console.WriteLine($"contact.LastName  {contact.LastName}");
+            Console.WriteLine($"contact.Email {contact.Email}");
+            Console.WriteLine($"contact.Phone {contact.Phone}");
+            Console.WriteLine($"contact.Address {contact.Address}");
+            Console.WriteLine($"contact.CountryID {contact.CountryID}");
+        }
+        else
+        {
+            Console.WriteLine("The Contact Is Not Found!");
+        }
+
+
+        Console.ReadKey();
+    }
+
+}
