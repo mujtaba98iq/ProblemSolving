@@ -51,6 +51,7 @@ public class Program
                     {
                         Console.WriteLine("Failed to retrieve the inserted ID.");
                     }
+                     connection.Close();
                 }
                 catch (Exception ex)
                 {
