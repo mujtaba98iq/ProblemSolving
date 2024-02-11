@@ -1,0 +1,41 @@
+using System;
+using System.Data;
+using System.Linq;
+
+
+namespace Examples_On_DataTable
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            DataTable EmployeesTable= new DataTable();
+            EmployeesTable.Columns.Add("ID", typeof(int));
+            EmployeesTable.Columns.Add("Name", typeof(string));
+            EmployeesTable.Columns.Add("Country",typeof(string));
+            EmployeesTable.Columns.Add("Salary", typeof(Double));
+            EmployeesTable.Columns.Add("Date", typeof(DateTime));
+
+            DataColumn[] PrimaryKey = new DataColumn[1];
+            PrimaryKey[0] = EmployeesTable.Columns["ID"];
+            EmployeesTable.PrimaryKey = PrimaryKey;
+            //Add Rows
+            EmployeesTable.Rows.Add(1,"Mujtaba IBrhaim ","Iraq",5000,DateTime.Now);
+            EmployeesTable.Rows.Add(2,"Murtada abd Ali ","Iraq",5000,DateTime.Now);
+            EmployeesTable.Rows.Add(3,"Mustafa abd Ali ","Iraq",5000,DateTime.Now);
+            EmployeesTable.Rows.Add(4,"Tahsseen abd Ali","Iraq",5000,DateTime.Now);
+            EmployeesTable.Rows.Add(5,"Safaa Salah","Iraq",5000, DateTime.Now);
+            EmployeesTable.Rows.Add(6,"JBar JBar","Jordan",2000, DateTime.Now);
+            EmployeesTable.Rows.Add(7,"Mohammed ","Jordan",2000, DateTime.Now);
+            EmployeesTable.Rows.Add(7,"Fadi ", "Egypt", 2000, DateTime.Now);
+
+            foreach (DataRow row in EmployeesTable.Rows)
+            {
+                Console.WriteLine(" ID: {0}, Name: {1}, Country:{2}, Salary: {3}, Date: {4}", row["ID"], row["Name"], row["Country"], row["Salary"], row["Date"]);
+            }
+
+            Console.ReadLine();
+
+        }
+    }
+}
