@@ -1,81 +1,83 @@
+using System;
 using System.Data;
+using System.Linq;
 
-namespace lab
+
+namespace Examples_On_DataTable
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            printTableWithExpression("");
-            printTableWithExpression("Country = 'syria'");
-            printTableWithExpression("Country = 'syria' or Country = 'jordan'");
-            printTableWithExpression("Id = 1");
-        }
-        static DataTable initEmployees()
-        {
-            DataTable employees = new();
+            DataTable EmployeesTable= new DataTable();
+            EmployeesTable.Columns.Add("ID", typeof(int));
+            EmployeesTable.Columns.Add("Name", typeof(string));
+            EmployeesTable.Columns.Add("Country",typeof(string));
+            EmployeesTable.Columns.Add("Salary", typeof(Double));
+            EmployeesTable.Columns.Add("Date", typeof(DateTime));
 
-            employees.Columns.Add("Id", typeof(int));
-            employees.Columns.Add("First Name", typeof(string));
-            employees.Columns.Add("Last Name", typeof(string));
-            employees.Columns.Add("Country", typeof(string));
-            employees.Columns.Add("Salary", typeof(double));
-            employees.Columns.Add("Added On", typeof(DateTime));
+            //Add Rows
+            EmployeesTable.Rows.Add(1,"Mujtaba IBrhaim ","Iraq",5000,DateTime.Now);
+            EmployeesTable.Rows.Add(2,"Murtada abd Ali ","Iraq",5000,DateTime.Now);
+            EmployeesTable.Rows.Add(3,"Mustafa abd Ali ","Iraq",5000,DateTime.Now);
+            EmployeesTable.Rows.Add(4,"Tahsseen abd Ali","Iraq",5000,DateTime.Now);
+            EmployeesTable.Rows.Add(5,"Safaa Salah","Iraq",5000, DateTime.Now);
+            EmployeesTable.Rows.Add(6,"JBar JBar","Jordan",2000, DateTime.Now);
+            EmployeesTable.Rows.Add(7,"Mohammed ","Jordan",2000, DateTime.Now);
+            EmployeesTable.Rows.Add(7,"Fadi ", "Egypt", 2000, DateTime.Now);
 
-            return employees;
-        }
-        static DataTable employees()
-        {
-            DataTable employees = initEmployees();
+            foreach (DataRow row in EmployeesTable.Rows)
+            {
+                Console.WriteLine(" ID: {0}, Name: {1}, Country:{2}, Salary: {3}, Date: {4}", row["ID"], row["Name"], row["Country"], row["Salary"], row["Date"]);
+            }
 
-            employees.Rows.Add(1, "saleem", "kassab", "syria", 1000, DateTime.Now);
-            employees.Rows.Add(2, "kareem", "najjar", "irbel", 2000, DateTime.Now);
-            employees.Rows.Add(3, "nassem", "hadad", "jordan", 6000, DateTime.Now);
 
-            return employees;
-        }
-        static DataTable employeesByExpression(DataTable employees, string expression)
-        {
-            DataTable filteredEmployees = initEmployees();
+            int EmployeeCount = 0;
+            double TotalSalary = 0;
+            double AvarageSalary = 0;
+            double MinSalary = 0;
+            double MaxSalary = 0;
+            EmployeeCount = EmployeesTable.Rows.Count;
+            TotalSalary = Convert.ToDouble(EmployeesTable.Compute("SUM(Salary)", string.Empty));
+            AvarageSalary = Convert.ToDouble(EmployeesTable.Compute("AVG(Salary)", string.Empty));
+            MinSalary = Convert.ToDouble(EmployeesTable.Compute("Min(Salary)", string.Empty));
+            MaxSalary = Convert.ToDouble(EmployeesTable.Compute("Max(Salary)", string.Empty));
+            Console.WriteLine(EmployeeCount);
+            Console.WriteLine(TotalSalary);
+            Console.WriteLine(AvarageSalary);
+            Console.WriteLine(MinSalary);
+            Console.WriteLine(MaxSalary);
 
-            DataRow[] emps = employees.Select(expression);
+            Console.WriteLine("=============================================");
+            int ResultCount = 0;
+            DataRow[] ResultRows;
 
-            foreach (DataRow employee in emps)
-                filteredEmployees.Rows.Add(employee.ItemArray);
+            ResultRows = EmployeesTable.Select("Country='Jordan'");
+            foreach (DataRow row in ResultRows)
+            {
+                Console.WriteLine(" ID: {0}, Name: {1}, Country:{2}, Salary: {3}, Date: {4}", row["ID"], row["Name"], row["Country"], row["Salary"], row["Date"]);
+            }
+            ResultCount = ResultRows.Count();
+            TotalSalary = Convert.ToDouble(EmployeesTable.Compute("SUM(Salary)", "Country='Jordan'"));
+            AvarageSalary = Convert.ToDouble(EmployeesTable.Compute("AVG(Salary)", "Country='Jordan'"));
+            MinSalary = Convert.ToDouble(EmployeesTable.Compute("Min(Salary)", "Country='Jordan'"));
+            MaxSalary = Convert.ToDouble(EmployeesTable.Compute("Max(Salary)", "Country='Jordan'"));
+            Console.WriteLine(ResultCount);
+            Console.WriteLine(TotalSalary);
+            Console.WriteLine(AvarageSalary);
+            Console.WriteLine(MinSalary);
+            Console.WriteLine(MaxSalary);
 
-            return filteredEmployees;
-        }
-        static void printBreifOfEmployees(DataTable employees)
-        {
-            Console.WriteLine("Count of Employees: {0}", employees.Rows.Count);
-            Console.WriteLine("Total Salayries: {0}", employees.Compute("Sum(Salary)", String.Empty));
-            Console.WriteLine("Average Salayries: {0}", employees.Compute("Avg(Salary)", String.Empty));
-            Console.WriteLine("Minimum Salary: {0}", employees.Compute("Max(Salary)", String.Empty));
-            Console.WriteLine("Maximum Salary: {0}", employees.Compute("Min(Salary)", String.Empty));
-        }
-        static void printemployees(DataTable employees)
-        {
-            Console.WriteLine("ID      First Name   Last Name    Country     Salary     Added On");
-            Console.WriteLine("_____________________________________________________________________________");
+            Console.WriteLine("=============================================");
+            ResultRows = EmployeesTable.Select("Country='Jordan' or Country='Egypt'");
+            foreach (DataRow row in ResultRows)
+            {
+                Console.WriteLine(" ID: {0}, Name: {1}, Country:{2}, Salary: {3}, Date: {4}", row["ID"], row["Name"], row["Country"], row["Salary"], row["Date"]);
+            }
 
-            foreach (DataRow employee in employees.Rows)
-                Console.WriteLine(employee["Id"] + "       " + employee["First name"] + "       " + employee["Last Name"] + "       " + employee["Country"] + "       " + employee["Salary"] + "       " + employee["Added On"]);
 
-            Console.WriteLine();
-            Console.WriteLine();
-            printBreifOfEmployees(employees);
-        }
-        static void printTableWithExpression(string expression)
-        {
-            Console.WriteLine();
+            Console.ReadLine();
 
-            if (expression == "")
-                Console.WriteLine("=========================== ALL ===========================");
-            else
-                Console.WriteLine("=========================== " + expression + " ===========================");
-
-            Console.WriteLine();
-            printemployees(employeesByExpression(employees(), expression));
         }
     }
 }
