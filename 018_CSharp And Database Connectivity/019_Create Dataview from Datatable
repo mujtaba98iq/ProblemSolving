@@ -1,46 +1,126 @@
-using System;
 using System.Data;
-using System.Linq;
 
-
-namespace Examples_On_DataTable
+namespace lab
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            DataTable EmployeesTable= new DataTable();
-            EmployeesTable.Columns.Add("ID", typeof(int));
-            EmployeesTable.Columns.Add("Name", typeof(string));
-            EmployeesTable.Columns.Add("Country",typeof(string));
-            EmployeesTable.Columns.Add("Salary", typeof(Double));
-            EmployeesTable.Columns.Add("Date", typeof(DateTime));
+            employeesDataView1(employees());
+        }
+        static DataTable initEmployees()
+        {
+            DataTable employees = new();
 
-            DataColumn[] PrimaryKey = new DataColumn[1];
-            PrimaryKey[0] = EmployeesTable.Columns["ID"];
-            EmployeesTable.PrimaryKey = PrimaryKey;
-            //Add Rows
-            EmployeesTable.Rows.Add(1,"Mujtaba IBrhaim ","Iraq",5000,DateTime.Now);
-            EmployeesTable.Rows.Add(2,"Murtada abd Ali ","Iraq",5000,DateTime.Now);
-            EmployeesTable.Rows.Add(3,"Mustafa abd Ali ","Iraq",5000,DateTime.Now);
-            EmployeesTable.Rows.Add(4,"Tahsseen abd Ali","Iraq",5000,DateTime.Now);
-            EmployeesTable.Rows.Add(5,"Safaa Salah","Iraq",5000, DateTime.Now);
-            EmployeesTable.Rows.Add(6,"JBar JBar","Jordan",2000, DateTime.Now);
-            EmployeesTable.Rows.Add(7,"Mohammed ","Jordan",2000, DateTime.Now);
-            EmployeesTable.Rows.Add(8,"Fadi ", "Egypt", 2000, DateTime.Now);
+            employees.Columns.Add("Id", typeof(int));
+            employees.Columns.Add("First Name", typeof(string));
+            employees.Columns.Add("Last Name", typeof(string));
+            employees.Columns.Add("Country", typeof(string));
+            employees.Columns.Add("Salary", typeof(double));
+            employees.Columns.Add("Added On", typeof(DateTime));
 
+            return employees;
+        }
+        static DataTable employees()
+        {
+            DataTable employees = initEmployees();
 
-            DataView EmployeesDataView1 = EmployeesTable.DefaultView;
+            employees.Rows.Add(1, "saleem", "kassab", "syria", 1000, DateTime.Now);
+            employees.Rows.Add(2, "kareem", "najjar", "irbel", 2000, DateTime.Now);
+            employees.Rows.Add(3, "nassem", "hadad", "jordan", 6000, DateTime.Now);
 
-          for(int i= 0;i<EmployeesDataView1.Count;i++)
+            return employees;
+        }
+        static DataTable employeesByExpression(DataTable employees, string expression = "")
+        {
+            DataTable filteredEmployees = initEmployees();
+
+            DataRow[] emps = employees.Select(expression);
+
+            foreach (DataRow employee in emps)
+                filteredEmployees.Rows.Add(employee.ItemArray);
+
+            return filteredEmployees;
+        }
+        static DataTable sortEmployees(DataTable employees, string expression)
+        {
+            DataTable sortedEmployees = initEmployees();
+            employees.DefaultView.Sort = expression;
+            sortedEmployees = employees.DefaultView.ToTable();
+            return sortedEmployees;
+        }
+        static DataTable delete(DataTable employees, int id)
+        {
+            foreach (DataRow employee in employees.Rows)
             {
-                Console.WriteLine(" ID: {0}, Name: {1}, Country:{2}, Salary: {3}", 
-                    EmployeesDataView1[i][0], EmployeesDataView1[i][1],
-                    EmployeesDataView1[i][2], EmployeesDataView1[i][3]);
+                if ((int)employee["Id"] == id)
+                {
+                    employee.Delete();
+                    break;
+                }
             }
 
-            Console.ReadLine();
+            return employees;
+        }
+        static DataTable update(DataTable employees, int id)
+        {
+            foreach (DataRow employee in employees.Rows)
+            {
+                if ((int)employee["Id"] == id)
+                {
+                    employee["First Name"] = "Mohammad";
+                    employee["Last Name"] = "Abo Hadhoud";
+                    employee["Country"] = "jordan";
+                    employee["Salary"] = 5000;
+                    break;
+                }
+            }
 
+            return employees;
+        }
+        static void printBreifOfEmployees(DataTable employees)
+        {
+            Console.WriteLine("Count of Employees: {0}", employees.Rows.Count);
+            Console.WriteLine("Total Salayries: {0}", employees.Compute("Sum(Salary)", String.Empty));
+            Console.WriteLine("Average Salayries: {0}", employees.Compute("Avg(Salary)", String.Empty));
+            Console.WriteLine("Minimum Salary: {0}", employees.Compute("Max(Salary)", String.Empty));
+            Console.WriteLine("Maximum Salary: {0}", employees.Compute("Min(Salary)", String.Empty));
+        }
+        static void printemployees(DataTable employees)
+        {
+            Console.WriteLine("ID      First Name   Last Name    Country     Salary     Added On");
+            Console.WriteLine("_____________________________________________________________________________");
+
+            foreach (DataRow employee in employees.Rows)
+                Console.WriteLine(employee["Id"] + "       " + employee["First name"] + "       " + employee["Last Name"] + "       " + employee["Country"] + "       " + employee["Salary"] + "       " + employee["Added On"]);
+
+            Console.WriteLine();
+            Console.WriteLine();
+            printBreifOfEmployees(employees);
+        }
+        static void printTableWithWhereExpression(string expression)
+        {
+            Console.WriteLine();
+
+            if (expression == "")
+                Console.WriteLine("=========================== ALL ===========================");
+            else
+                Console.WriteLine("=========================== " + expression + " ===========================");
+
+            Console.WriteLine();
+            printemployees(employeesByExpression(employees(), expression));
+        }
+
+
+        static void employeesDataView1(DataTable employees)
+        {
+            DataView dataView = employees.DefaultView;
+
+            Console.WriteLine("ID      First Name   Last Name    Country");
+            Console.WriteLine("____________________________________________________");
+
+            for (int i = 0; i < dataView.Count; i++)
+                Console.WriteLine(dataView[i][0] + "      " + dataView[i][1] + "      " + dataView[i][2] + "      " + dataView[i][3]);
         }
     }
 }
