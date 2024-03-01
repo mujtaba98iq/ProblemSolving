@@ -1,0 +1,46 @@
+ void FillListViewWithUsersInfo(string SearchsConditions = "")
+        {
+
+            int CounterShowListUser = 0;
+            lvShowUser.Items.Clear();
+            DataTable dt = clsUser.UsersList();
+            _NumberOfUsers = dt.Rows.Count;
+            if (SearchsConditions == "")
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    lvShowUser.Items.Add(dt.Rows[i].ItemArray[0].ToString());
+                    lvShowUser.Items[i].SubItems.Add(dt.Rows[i].ItemArray[1].ToString());
+                    lvShowUser.Items[i].SubItems.Add(dt.Rows[i].ItemArray[2].ToString());
+                    lvShowUser.Items[i].SubItems.Add(dt.Rows[i].ItemArray[3].ToString());
+                    lvShowUser.Items[i].SubItems.Add(dt.Rows[i].ItemArray[4].ToString());
+                    lvShowUser.Items[i].SubItems.Add(dt.Rows[i].ItemArray[5].ToString());
+                    lvShowUser.Items[i].SubItems.Add(dt.Rows[i].ItemArray[6].ToString());
+                    lvShowUser.Items[i].SubItems.Add(dt.Rows[i].ItemArray[7].ToString());
+                    lvShowUser.Items[i].SubItems.Add(dt.Rows[i].ItemArray[8].ToString());
+                    lvShowUser.Items[i].SubItems.Add(dt.Rows[i].ItemArray[9].ToString());
+                    lvShowUser.Items[i].SubItems.Add(dt.Rows[i].ItemArray[10].ToString());
+                }
+            }
+            else
+            {
+                foreach (DataRow dr in dt.Select($"UserName Like '%{SearchsConditions}%'"))
+                {
+
+                    lvShowUser.Items.Add(dr["ID"].ToString());
+                    lvShowUser.Items[CounterShowListUser].SubItems.Add(dr["UserName"].ToString());
+                    lvShowUser.Items[CounterShowListUser].SubItems.Add(dr["FirstName"].ToString());
+                    lvShowUser.Items[CounterShowListUser].SubItems.Add(dr["LastName"].ToString());
+                    lvShowUser.Items[CounterShowListUser].SubItems.Add(dr["Email"].ToString());
+                    lvShowUser.Items[CounterShowListUser].SubItems.Add(dr["Phone"].ToString());
+                    lvShowUser.Items[CounterShowListUser].SubItems.Add(dr["Permissions"].ToString());
+                    lvShowUser.Items[CounterShowListUser].SubItems.Add(dr["Password"].ToString());
+                    lvShowUser.Items[CounterShowListUser].SubItems.Add(dr["Address"].ToString());
+                    lvShowUser.Items[CounterShowListUser].SubItems.Add(dr["Gendor"].ToString());
+                    lvShowUser.Items[CounterShowListUser].SubItems.Add(dr["DateOfBirth"].ToString());
+
+                    CounterShowListUser++;
+
+                }
+            }
+        }
