@@ -1,0 +1,17 @@
+  private void FrmLayout_Load(object sender, EventArgs e)
+        {
+            CenterToScreen();
+            timer1.Start();
+            lblDate.Text = DateTime.Now.ToString("dddd, MMMM yyyy");
+            lblClock.Text = DateTime.Now.ToString("hh:mm:ss");
+            lblSup.Text = DateTime.Now.ToString("tt"); //AM PM
+        }
+
+ private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblDate.Text = DateTime.Now.ToString("dddd, MMMM yyyy");
+            lblClock.Text = DateTime.Now.ToString("hh:mm:ss");
+            lblSup.Text = DateTime.Now.ToString("tt");
+
+            timer1.Start();
+        }
