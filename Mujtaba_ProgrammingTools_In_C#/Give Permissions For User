@@ -1,20 +1,20 @@
-private void GetPermissionsForUpdateUser()
+ private void GetPermissionsForAddNewUser()
         {
             int CountPermissions = 0;
 
-            if (rbPermissionsNoForUpdateUser.Checked)
+            if (rbPermissionsNoForAddUser.Checked)
             {
-                if (chkManageUsersForUpdateUser.Checked)
+                if (chkManageClientForAddUser.Checked)
                     CountPermissions += 1;
-                if (chkManageUsersForUpdateUser.Checked)
+                if (chkManageUserForAddUser.Checked)
                     CountPermissions += 2;
 
-                if (chkClientsTransacionsForUpdateUser.Checked)
+                if (chkTransacionsForAddUser.Checked)
                     CountPermissions += 4;
 
-                if (chkCurrencyExchangeForUpdateUser.Checked)
+                if (chkCurrencyExchangeForAddUser.Checked)
                     CountPermissions += 8;
 
-                _PermissionsForUpdateUser = CountPermissions;
+                _PermissionsForNewUser = CountPermissions;
             }
         }
