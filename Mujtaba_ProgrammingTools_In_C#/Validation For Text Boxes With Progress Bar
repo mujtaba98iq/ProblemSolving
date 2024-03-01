@@ -1,0 +1,90 @@
+private void validateUserForm(object sender, CancelEventArgs e) => validateUserForm((System.Windows.Forms.TextBox)sender, e);
+ private void validateUserForm(System.Windows.Forms.TextBox textBox, CancelEventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(textBox.Text))
+            {
+                e.Cancel = true;
+                textBox.Focus();
+                clientInfoErrorProvider.SetError(textBox, "required");
+            }
+            else if (textBox.Name == "txtUserNameForAddNewUser" && clsUser.IsFoundUserByUserName(textBox.Text))
+            {
+                e.Cancel = true;
+                textBox.Focus();
+                clientInfoErrorProvider.SetError(textBox, "User Name (" + textBox.Text + ") is already used, Choose another one.");
+            }
+            else if ((textBox.Name == "txtEmailForUserName" || textBox.Name == "txtEmailForUserName") && !textBox.Text.Contains("@"))
+            {
+                e.Cancel = true;
+                textBox.Focus();
+                clientInfoErrorProvider.SetError(textBox, "Invalid Email, Include an '@' in the email address");
+            }
+            else if ((textBox.Name == "txtPhoneForUserName" || textBox.Name == "txtPhoneForUserName") && !textBox.Text.All(char.IsDigit))
+            {
+                e.Cancel = true;
+                textBox.Focus();
+                clientInfoErrorProvider.SetError(textBox, "Invalid Phone, Only Numbers Accepted");
+            }
+            else if ((textBox.Name == "txtDateOfBirthForUserName" || textBox.Name == "txtDateOfBirthForUserName") && String.IsNullOrEmpty(textBox.Text))
+            {
+                e.Cancel = true;
+                textBox.Focus();
+                clientInfoErrorProvider.SetError(textBox, "Invalid Date, Only Date Accepted");
+            }
+            else
+            {
+                e.Cancel = false;
+                clientInfoErrorProvider.SetError(textBox, null);
+            }
+
+            updateProgressBarAddNewClient(addNewClientValidFormInputsCount());
+        }
+
+        int addNewClientValidFormInputsCount()
+        {
+            int counter = 0;
+
+            if (!string.IsNullOrWhiteSpace(txtFirstNameForAddNewUser.Text) && !clsClient.IsFoundClientByAccNumber(txtFirstNameForAddNewUser.Text))
+                counter++;
+            if (!string.IsNullOrWhiteSpace(txtUserNameForAddNewUser.Text))
+                counter++;
+            if (!string.IsNullOrWhiteSpace(txtLastNameForUserName.Text))
+                counter++;
+            if (!string.IsNullOrWhiteSpace(txtEmailForUserName.Text) && txtEmailForUserName.Text.Contains("@"))
+                counter++;
+            if (!string.IsNullOrWhiteSpace(txtPhoneForUserName.Text) && txtPhoneForUserName.Text.All(char.IsDigit))
+                counter++;
+            if (!string.IsNullOrWhiteSpace(txtAddressForUserName.Text))
+                counter++;
+            if (!string.IsNullOrWhiteSpace(txtPasswordForUserName.Text))
+                counter++;
+            if (!string.IsNullOrWhiteSpace(txtGendorForUserName.Text))
+                counter++;
+            if (!string.IsNullOrWhiteSpace(txtDateOfBirthForUserName.Text))
+                counter++;
+
+            return counter;
+        }
+        private void checkBtnAddNewClientStatus()
+        {
+            if (circularProgressBarAddNewUser.Value == 9)
+            {
+                btnAddNewUser.Enabled = true;
+                grpAddNewUserPermissions.Enabled = true;
+                ChangeCheckBoxesAddNewUserForPermissions(true);
+            }
+
+            else
+                btnAddNewUser.Enabled = false;
+        }
+
+        private void updateProgressBarAddNewClient(int value)
+        {
+            if (value <= 9)
+                circularProgressBarAddNewUser.Value = value;
+            circularProgressBarAddNewUser.Text = (((float)circularProgressBarAddNewUser.Value / circularProgressBarAddNewUser.Maximum) * 100).ToString("0") + "%";
+            circularProgressBarAddNewUser.ProgressColor = Color.FromArgb(192, 192, 255);
+            circularProgressBarAddNewUser.Refresh();
+
+            checkBtnAddNewClientStatus();
+        }
