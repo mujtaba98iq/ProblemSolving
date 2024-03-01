@@ -1,0 +1,32 @@
+  void restHomeForm()
+        {
+            if(!_checkAccess(1,clsGloabal.CurrentUser.Permissions))
+            {
+                btnManageClient.Enabled = false;
+                btnManageClient.Visible = false;
+            }
+            if (!_checkAccess(2, clsGloabal.CurrentUser.Permissions) )
+            {
+                btnTransactions.Enabled = false;
+                btnTransactions.Visible = false;
+            }
+            if (!_checkAccess(4, clsGloabal.CurrentUser.Permissions))
+            {
+                btnManageUsers.Enabled = false;
+                btnManageUsers.Visible = false;
+            }
+            if (!_checkAccess(8, clsGloabal.CurrentUser.Permissions))
+            {
+                btnCurrencyExchange.Enabled = false;
+                btnCurrencyExchange.Visible = false;
+            }
+        }
+   bool _checkAccess(int menueNumber,int UserPermissions)
+        {
+            if (UserPermissions == -1)
+                return true;
+            if((menueNumber&UserPermissions)==menueNumber)
+                return true;
+
+            return false;
+        }
