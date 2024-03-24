@@ -1,0 +1,7 @@
+//full with info 
+dgvFines.DataSource = clsFine.GetAllFines();
+
+
+//to get first Value from dgv
+Convert.ToInt32(dgvFines.CurrentRow.Cells[0].Value);
+
