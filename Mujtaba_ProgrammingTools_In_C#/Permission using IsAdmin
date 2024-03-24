@@ -1,0 +1,8 @@
+    if(clsGloabal.CurrentUser.IsAdmin)
+            {
+                btnBorrowings.Visible = true;
+                btnFines.Visible = true;
+                btnUsers.Visible = true;
+                btnPeople.Visible = true;
+                btnAddNewBook.Visible = true;
+            }
