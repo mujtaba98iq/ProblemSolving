@@ -1,0 +1,10 @@
+  private void LoadComboBoxWithRankName()
+        {
+            cbRankName.Items.Clear();
+           
+            DataTable dt = clsBeltRank.GetAllBeltRanks();
+            foreach (DataRow dr in dt.Rows)
+            {
+                cbRankName.Items.Add(dr["RankName"]);
+            }
+        }
