@@ -1,0 +1,1 @@
+tcApplicationInfo.SelectedTab = tcApplicationInfo.TabPages["tpApplicationInfo"];
