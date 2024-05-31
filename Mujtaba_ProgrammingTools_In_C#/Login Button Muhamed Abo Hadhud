@@ -1,0 +1,42 @@
+     private void btnLogin_Click(object sender, EventArgs e)
+        {
+            clsUser user= clsUser.FindByUsernameAndPassword(txtUserName.Text.Trim(),txtPassword.Text.Trim());
+
+            if (user != null) 
+            { 
+
+                if (chkRememberMe.Checked )
+                {
+                    //store username and password
+                    clsGlobal.RememberUsernameAndPassword(txtUserName.Text.Trim(), txtPassword.Text.Trim());
+
+                } 
+                  else
+                {
+                    //store empty username and password
+                    clsGlobal.RememberUsernameAndPassword("", "");
+
+                }
+
+                //incase the user is not active
+                if (!user.IsActive )
+                {
+
+                    txtUserName.Focus();
+                    MessageBox.Show("Your accound is not Active, Contact Admin.", "In Active Account", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                 clsGlobal.CurrentUser = user;
+                 this.Hide();
+                 frmMain frm = new frmMain(this);
+                 frm.ShowDialog();
+
+
+            } else
+            {
+                txtUserName.Focus();
+                MessageBox.Show("Invalid Username/Password.", "Wrong Credintials", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }    
+
+        }
