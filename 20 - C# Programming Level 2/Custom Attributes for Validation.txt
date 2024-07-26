@@ -1,0 +1,110 @@
+using System;
+using System.Reflection;
+
+[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+public class RangeAttribute : Attribute
+{
+    public int Min { get; }
+    public int Max { get; }
+
+    public string ErrorMessage { get; set; }
+
+    public RangeAttribute(int min, int max)
+    {
+        Min = min;
+        Max = max;
+    }
+    public bool IsValid(object value)
+    {
+        int num = Convert.ToInt32(value);
+        return num >= Min && num <= Max;
+    }
+}
+[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
+public class MinLengthAttribute : Attribute
+{
+    public int Length { get; private set; }
+    public string ErrorMessage { get; private set; }
+    public MinLengthAttribute(int length, string errorMessage)
+    {
+        Length = length;
+        ErrorMessage = errorMessage;
+    }
+
+    public bool IsValid(object value)
+    {
+        var stringValue = value as string;
+        return stringValue != null && stringValue.Length >= Length;
+    }
+}
+
+public class Person
+{
+    [Range(18, 99, ErrorMessage = "Age must be between 18 and 99.")]
+    public int Age { get; set; }
+
+    [Range(20, 30, ErrorMessage = "Experience must be between 20 and 30.")]
+    public int Experience { get; set; }
+
+    [MinLength(5, "Name must be at least consists of 5 chars or above.")]
+    public string Name { get; set; }
+}
+public static class Validator
+{
+    public static bool Validate(object obj)
+    {
+        var type = obj.GetType();
+        var properties = type.GetProperties();
+
+        foreach (var property in properties)
+        {
+            var MinAttribute = property.GetCustomAttribute<MinLengthAttribute>();
+
+            var rangeAttribute = property.GetCustomAttribute<RangeAttribute>();
+
+            if (MinAttribute != null)
+            {
+                var value = property.GetValue(obj);
+                if (!MinAttribute.IsValid(value))
+                {
+                    Console.WriteLine($"Validation failed for property '{property.Name}': {MinAttribute.ErrorMessage}");
+                    return false; // Validation failed
+
+                }
+            }
+
+            else if (rangeAttribute != null)
+            {
+
+                var value = property.GetValue(obj);
+                if (!rangeAttribute.IsValid(value))
+                {
+                    Console.WriteLine($"Validation failed for property '{property.Name}': {rangeAttribute.ErrorMessage}");
+
+                    return false; // Validation failed
+                }
+            }
+
+        }
+
+        return true; // All validations passed
+    }
+}
+public class ValidationExample
+{
+    public static void Main()
+    {
+        Person person = new Person { Age = 25, Name = "Mohamed", Experience = 15 };
+
+        if (Validator.Validate(person))
+        {
+            Console.WriteLine("Person is valid.");
+        }
+        else
+        {
+            Console.WriteLine("Validation failed.");
+        }
+        Console.ReadKey();
+
+    }
+}
