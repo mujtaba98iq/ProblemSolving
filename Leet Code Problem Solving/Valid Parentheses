@@ -1,0 +1,23 @@
+ public bool IsValid(string s)
+    {
+    Stack<string> openingParentheses = new Stack<string>();
+   foreach (char c in s)
+   {
+       if(c =='('||c =='{'||c == '[')
+       {
+           openingParentheses.Push(c.ToString());
+       }
+       else
+       {
+           if(openingParentheses.Count == 0)return false;
+           var opening= openingParentheses.Pop();
+           if(opening=="(" &&c!=')'|| opening == "{" && c != '}' || opening == "[" && c != ']')
+           {
+               return false;
+           }
+       }
+
+   }
+   if (openingParentheses.Count > 0) return false;
+   return true;
+    }
